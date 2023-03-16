@@ -1,0 +1,14 @@
+ {
+    "unp_profiles": [
+        "unp-ap: 10110",
+        "unp-mgmt: 104003",
+        "unp-user: 10110",
+        "unp-voip: 10191",
+        "unp-guest: 10110",
+        "unp-extern: 40383",
+        "unp-printer: 10110",
+        "unp-internet: 90925",
+        "unp-user-110: 10110",
+        "unp-user-130: 10130"
+    ]
+}

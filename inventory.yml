@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    S_ST_I2_TEST_99:
+      ansible_host: 172.23.3.99
+      device_vendor: alcatel
+      device_os: aos6
+      ansible_connection: ansible.netcommon.network_cli
+      ansible_network_os: jefvantongerloo.alcatel.aos

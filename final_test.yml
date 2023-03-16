@@ -1,0 +1,55 @@
+- name: Validate UNP profile configuration
+  hosts: all
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+   unp_profile: unp-user
+   unp_found: false
+
+  tasks:
+    - name: Debug variables
+      debug:
+        msg: "{{ unp_profile }}"
+
+
+    - name: Get UNP profile configuration
+      cli_command:
+       command: show configuration snapshot da-unp | grep "{{ unp_profile }}"
+      register: unp_config
+      ignore_errors: true
+
+    - name: debug to check
+      debug:
+       msg: "{{ unp_config }}"
+
+    - name: Check if UNP profile is found
+      set_fact:
+        unp_found: true
+      when: unp_config.stdout_lines is search("unp_profile")
+
+    - name: Debug variables
+      debug:
+        msg: "{{ unp_config.stdout_lines }}"
+
+
+    - name: debug to check profile
+      debug:
+       msg: "{{ unp_found }}"
+#       msg: "{{ unp_profile in unp_config.stdout_lines }}"
+
+#    - name: If UNP profile is found
+#      fail:
+#        msg: "UNP profile {{ unp_profile }} found"
+#      when: unp_found
+
+#    - name: Stop playbook if UNP profile is found
+#      meta: end_play
+#      when: unp_found
+
+#    - name: Fail if UNP profile is not found
+#      fail:
+#        msg: "UNP profile {{ unp_profile }} not found"
+#      when: not unp_found
+
+

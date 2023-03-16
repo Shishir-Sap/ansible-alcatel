@@ -1,0 +1,23 @@
+
+---
+- name: Unp profile and ISID
+  hosts: all
+  connection: network_cli
+  become: true
+  gather_facts: no
+  tasks:
+    - name: Retrieve unp profile with its ISID
+      cli_command:
+       command: show configuration snapshot da-unp
+#       command: show configuration snapshot da-unp | grep unp-dd
+      register: unp_output
+      ignore_errors: true
+
+    - name: show unp output
+      set_fact:
+        unp_profiles: "{{ unp_output.stdout_lines | select('match', '^unp profile \"(.*)\"( map.*)? isid >
+
+    - name: Print unp profiles
+      debug:
+        var: unp_profiles
+
