@@ -1,6 +1,2 @@
-# To run the unp_profile playbook install the requirements.yml file first
-# requirements.yml file can be run with following commands
-# It will install the jefvantongerloo.alcatel collection with the Ansible Galaxy CLI
-
-ansible-galaxy collection install -r requirements.yml
-
+textfsm-aos>=1.0.0 # minimum version
+ansible-pylibssh
